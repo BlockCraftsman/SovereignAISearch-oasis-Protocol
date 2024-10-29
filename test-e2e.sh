@@ -9,10 +9,10 @@ export PRIVATE_KEY="ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2
 NETWORK="sapphire-localnet"
 
 # Query to store in the contract.
-QUERY="example query"
+QUERY="do you know oasisprotocol web3 project?"
 
 # Result Hash CID to store in the contract.
-RESULT_HASH_CID="example_cid"
+RESULT_HASH_CID="bafybeiekjfdzkn3bk4uzs3zlpuzdrmqyrht5joehnqvr6r7shlde5fbe7e"
 
 # Whether the result is encrypted.
 IS_ENCRYPTED="false"
