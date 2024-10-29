@@ -21,54 +21,48 @@ The `SovereignAISearchStorage` smart contract is designed to manage user profile
 
 ### Architecture Diagram
 ```mermaid
-graph TB
-    subgraph SovereignAISearchStorage[SovereignAISearchStorage Contract]
+flowchart TB
+    subgraph Contract["SovereignAISearchStorage"]
+        direction TB
         
-        subgraph DataStructures[Data Structures]
-            SearchResult[SearchResult Struct<br>- query<br>- resultHashCID<br>- timestamp<br>- isEncrypted<br>- encryptionKey<br>- searchScore]
-            UserProfile[UserProfile Struct<br>- searchCount<br>- isActive<br>- lastSearchTime]
+        subgraph DataStructures["Data Structures"]
+            SR[SearchResult Struct]
+            UP[UserProfile Struct]
         end
 
-        subgraph Storage[Storage]
-            Mappings[Storage Mappings]
-            Mappings --> UserProfiles[userProfiles<br>address => UserProfile]
-            Mappings --> SearchHistory[userSearchHistory<br>address => SearchResult[]]
+        subgraph Mappings["Storage Mappings"]
+            M1[userProfiles]
+            M2[userSearchHistory]
         end
 
-        subgraph Functions[Public Functions]
-            CreateProfile[createUserProfile]
-            StoreSearch[storeSearchResult]
-            GetHistory[getSearchHistory]
-            GetRecent[getRecentSearches]
-            GetStats[getUserStats]
-            SearchKeyword[searchHistoryByKeyword]
+        subgraph Functions["Public Functions"]
+            F1[createUserProfile]
+            F2[storeSearchResult]
+            F3[getSearchHistory]
+            F4[getRecentSearches] 
+            F5[getUserStats]
+            F6[searchHistoryByKeyword]
         end
 
-        subgraph Internal[Internal Functions]
-            Contains[contains<br>String Search Helper]
+        subgraph Events["Events"]
+            E1[SearchResultStored]
+            E2[UserProfileCreated]
         end
 
-        subgraph Events[Events]
-            StoredEvent[SearchResultStored]
-            ProfileEvent[UserProfileCreated]
+        subgraph Internal["Internal"]
+            I1[contains function]
         end
-
     end
 
-    User((User)) --> CreateProfile
-    User --> StoreSearch
-    User --> GetHistory
-    User --> GetRecent
-    User --> GetStats
-    User --> SearchKeyword
-
-    CreateProfile --> UserProfiles
-    StoreSearch --> SearchHistory
-    GetHistory --> SearchHistory
-    GetRecent --> SearchHistory
-    GetStats --> UserProfiles
-    SearchKeyword --> SearchHistory
-    SearchKeyword --> Contains
+    User((User)) --> F1 & F2 & F3 & F4 & F5 & F6
+    
+    F1 --> M1
+    F2 --> M2
+    F3 --> M2
+    F4 --> M2
+    F5 --> M1
+    F6 --> M2
+    F6 --> I1
 ```
 
 ### Detailed Architecture
