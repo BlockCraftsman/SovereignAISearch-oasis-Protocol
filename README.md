@@ -93,6 +93,41 @@ flowchart TB
 
 ### Workflow Description
 
+```mermaid
+flowchart TB
+    Start(Start) --> CreateProfile[Create User Profile]
+    CreateProfile --> ProfileCheck{Profile exists?}
+    ProfileCheck -->|No| Initialize[Initialize Profile<br>Set active status<br>Reset counters]
+    ProfileCheck -->|Yes| Error[Return Error]
+    Initialize --> Ready[Profile Ready]
+    
+    Ready --> Operations[User Operations]
+    
+    Operations --> Store[Store Search Result]
+    Store --> ValidateUser{User Active?}
+    ValidateUser -->|Yes| SaveSearch[Save Search Data<br>Update Profile Stats]
+    ValidateUser -->|No| AccessDenied[Access Denied]
+    
+    Operations --> Retrieve[Retrieve History]
+    Retrieve --> R1[Get Search History<br>Paginated Results]
+    Retrieve --> R2[Get Recent Searches<br>Latest Results]
+    
+    Operations --> Search[Search by Keyword]
+    Search --> MatchResults[Match Keyword<br>in History]
+    
+    Operations --> Stats[Get User Stats]
+    Stats --> ReturnStats[Return Search Count<br>& Last Search Time]
+    
+    SaveSearch --> EmitEvent[Emit SearchResultStored]
+    Initialize --> EmitProfile[Emit UserProfileCreated]
+
+    style Start fill:#f9f,stroke:#333
+    style Ready fill:#9f9,stroke:#333
+    style Operations fill:#99f,stroke:#333
+    style AccessDenied fill:#f99,stroke:#333
+    style Error fill:#f99,stroke:#333
+```
+
 1. **User Profile Creation**:
    - The user invokes the `createUserProfile` function to initialize their profile.
    - The contract creates a new `UserProfile` struct for the user, setting their status to active and initializing their search count and last search timestamp.
@@ -112,6 +147,7 @@ flowchart TB
 5. **Retrieving User Statistics**:
    - The user invokes the `getUserStats` function to retrieve their search statistics.
    - The contract retrieves the user's profile and returns their total search count and last search timestamp.
+
 
 ## Prerequisites
 To build and test the SovereignAISearch-oasis-Protocol, you need the following tools:
