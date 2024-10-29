@@ -11,8 +11,8 @@ import (
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 
-	"github.com/BlockCraftsman/SovereignSearch-oasis-Protocol/connection"
-	"github.com/BlockCraftsman/SovereignSearch-oasis-Protocol/contracts/SovereignAISearchStorage"
+	"github.com/BlockCraftsman/SovereignAISearch-oasis-Protocol/connection"
+	"github.com/BlockCraftsman/SovereignAISearch-oasis-Protocol/contracts/SovereignAISearchStorage"
 )
 
 var storeCIDCmd = &cobra.Command{

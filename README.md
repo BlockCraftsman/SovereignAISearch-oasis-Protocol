@@ -188,9 +188,9 @@ export PRIVATE_KEY=...
 ### Deploying the Contract
 You can deploy the contract on different networks by invoking:
 ```shell
-./SovereignSearch-oasis-Protocol deploy --network sapphire-localnet # Sapphire Localnet
-./SovereignSearch-oasis-Protocol deploy --network sapphire-testnet  # Sapphire Testnet
-./SovereignSearch-oasis-Protocol deploy --network sapphire          # Sapphire Mainnet
+./SovereignAISearch-oasis-Protocol deploy --network sapphire-localnet # Sapphire Localnet
+./SovereignAISearch-oasis-Protocol deploy --network sapphire-testnet  # Sapphire Testnet
+./SovereignAISearch-oasis-Protocol deploy --network sapphire          # Sapphire Mainnet
 ```
 
 The deployed contract's address is printed to the standard output if the deployment is successful. You can store it in an environment variable, as you will need it to interact with the contract.
@@ -198,19 +198,19 @@ The deployed contract's address is printed to the standard output if the deploym
 ### Activating User Profile
 To activate a user profile in the deployed contract:
 ```shell
-./SovereignSearch-oasis-Protocol createUserProfile --network sapphire-localnet ${CONTRACT_ADDR}
+./SovereignAISearch-oasis-Protocol createUserProfile --network sapphire-localnet ${CONTRACT_ADDR}
 ```
 
 ### Storing CID Information
 To store CID information inside the deployed contract:
 ```shell
-./SovereignSearch-oasis-Protocol storeCID --network sapphire-localnet ${CONTRACT_ADDR} "do you know oasisprotocol web3 project?" "bafybeiekjfdzkn3bk4uzs3zlpuzdrmqyrht5joehnqvr6r7shlde5fbe7e" "false" "" "100"
+./SovereignAISearch-oasis-Protocol storeCID --network sapphire-localnet ${CONTRACT_ADDR} "do you know oasisprotocol web3 project?" "bafybeiekjfdzkn3bk4uzs3zlpuzdrmqyrht5joehnqvr6r7shlde5fbe7e" "false" "" "100"
 ```
 
 ### Retrieving CID Information
 To retrieve the CID information from the deployed contract:
 ```shell
-./SovereignSearch-oasis-Protocol getCID --network sapphire-localnet ${CONTRACT_ADDR} "bafybeiekjfdzkn3bk4uzs3zlpuzdrmqyrht5joehnqvr6r7shlde5fbe7e"
+./SovereignAISearch-oasis-Protocol getCID --network sapphire-localnet ${CONTRACT_ADDR} "bafybeiekjfdzkn3bk4uzs3zlpuzdrmqyrht5joehnqvr6r7shlde5fbe7e"
 ```
 
 ## Debugging

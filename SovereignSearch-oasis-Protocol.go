@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/BlockCraftsman/SovereignSearch-oasis-Protocol/cmd"
+	"github.com/BlockCraftsman/SovereignAISearch-oasis-Protocol/cmd"
 )
 
 func main() {

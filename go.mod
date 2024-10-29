@@ -1,4 +1,4 @@
-module github.com/BlockCraftsman/SovereignSearch-oasis-Protocol
+module github.com/BlockCraftsman/SovereignAISearch-oasis-Protocol
 
 go 1.22.5
 

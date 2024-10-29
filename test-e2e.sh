@@ -24,17 +24,17 @@ ENCRYPTION_KEY=""
 SEARCH_SCORE="100"
 
 # Deploy the contract, its address is returned on stdout.
-ADDR=$(./SovereignSearch-oasis-Protocol deploy --network ${NETWORK})
+ADDR=$(./SovereignAISearch-oasis-Protocol deploy --network ${NETWORK})
 echo "Contract address is: ${ADDR}"
 
 # Activate the user profile in the deployed contract.
-./SovereignSearch-oasis-Protocol createUserProfile --network ${NETWORK} "${ADDR}"
+./SovereignAISearch-oasis-Protocol createUserProfile --network ${NETWORK} "${ADDR}"
 
 # Store the CID information inside the deployed contract.
-./SovereignSearch-oasis-Protocol storeCID --network ${NETWORK} "${ADDR}" "${QUERY}" "${RESULT_HASH_CID}" "${IS_ENCRYPTED}" "${ENCRYPTION_KEY}" "${SEARCH_SCORE}"
+./SovereignAISearch-oasis-Protocol storeCID --network ${NETWORK} "${ADDR}" "${QUERY}" "${RESULT_HASH_CID}" "${IS_ENCRYPTED}" "${ENCRYPTION_KEY}" "${SEARCH_SCORE}"
 
 # Retrieve the CID information from the deployed contract.
-CID_GOT=$(./SovereignSearch-oasis-Protocol getCID --network ${NETWORK} "${ADDR}" "${RESULT_HASH_CID}" | grep -oP 'ResultHashCID: \K.*')
+CID_GOT=$(./SovereignAISearch-oasis-Protocol getCID --network ${NETWORK} "${ADDR}" "${RESULT_HASH_CID}" | grep -oP 'ResultHashCID: \K.*')
 
 # Check if the retrieved CID information matches the stored CID information.
 if [ "x${RESULT_HASH_CID}" = "x${CID_GOT}" ]; then
