@@ -21,40 +21,54 @@ The `SovereignAISearchStorage` smart contract is designed to manage user profile
 
 ### Architecture Diagram
 ```mermaid
-graph TD
-    A[User Interface] --> B[SovereignAISearchStorage Contract]
-    B --> C[UserProfile Mapping]
-    B --> D[SearchResult Mapping]
-    B --> E[Events]
-    B --> F[Modifiers]
-    B --> G[Functions]
+graph TB
+    subgraph SovereignAISearchStorage[SovereignAISearchStorage Contract]
+        
+        subgraph DataStructures[Data Structures]
+            SearchResult[SearchResult Struct<br>- query<br>- resultHashCID<br>- timestamp<br>- isEncrypted<br>- encryptionKey<br>- searchScore]
+            UserProfile[UserProfile Struct<br>- searchCount<br>- isActive<br>- lastSearchTime]
+        end
 
-    subgraph UserProfile Mapping
-        C1[address => UserProfile]
+        subgraph Storage[Storage]
+            Mappings[Storage Mappings]
+            Mappings --> UserProfiles[userProfiles<br>address => UserProfile]
+            Mappings --> SearchHistory[userSearchHistory<br>address => SearchResult[]]
+        end
+
+        subgraph Functions[Public Functions]
+            CreateProfile[createUserProfile]
+            StoreSearch[storeSearchResult]
+            GetHistory[getSearchHistory]
+            GetRecent[getRecentSearches]
+            GetStats[getUserStats]
+            SearchKeyword[searchHistoryByKeyword]
+        end
+
+        subgraph Internal[Internal Functions]
+            Contains[contains<br>String Search Helper]
+        end
+
+        subgraph Events[Events]
+            StoredEvent[SearchResultStored]
+            ProfileEvent[UserProfileCreated]
+        end
+
     end
 
-    subgraph SearchResult Mapping
-        D1[address => SearchResult[]]
-    end
+    User((User)) --> CreateProfile
+    User --> StoreSearch
+    User --> GetHistory
+    User --> GetRecent
+    User --> GetStats
+    User --> SearchKeyword
 
-    subgraph Events
-        E1[SearchResultStored]
-        E2[UserProfileCreated]
-    end
-
-    subgraph Modifiers
-        F1[onlyActiveUser]
-    end
-
-    subgraph Functions
-        G1[createUserProfile]
-        G2[storeSearchResult]
-        G3[getSearchHistory]
-        G4[getRecentSearches]
-        G5[getUserStats]
-        G6[searchHistoryByKeyword]
-        G7[contains]
-    end
+    CreateProfile --> UserProfiles
+    StoreSearch --> SearchHistory
+    GetHistory --> SearchHistory
+    GetRecent --> SearchHistory
+    GetStats --> UserProfiles
+    SearchKeyword --> SearchHistory
+    SearchKeyword --> Contains
 ```
 
 ### Detailed Architecture
